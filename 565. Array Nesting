@@ -1,0 +1,47 @@
+Problem URL: https://leetcode.com/problems/array-nesting/
+
+** Optimal Solution (according to leetcode template) **
+
+class Solution {
+public:
+    int arrayNesting(vector<int>& nums) {
+        
+    int n = nums.size();
+    vector<int> v;
+    vector<int> visited(n, 0);
+    
+    
+    if(n == 1) return 1;
+    
+    int ans = INT_MIN;
+    int count = INT_MIN;
+       
+    for(int i = 0; i < n; i++){
+
+        if(visited[i] == 0){
+        int index = nums[i]; 
+        count = 1;
+        visited[i] = 1;
+            
+        while(index != i){
+            index = nums[index];
+            count++;
+            visited[index] = 1; 
+            }
+        }
+        ans = max(ans, count);        
+    }  
+        
+    return ans;
+        
+    }
+    
+    int max(int a, int b){
+        if(a > b){
+            return a;
+        }
+        else{
+            return b;
+        }
+    }
+};
