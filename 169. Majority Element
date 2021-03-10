@@ -1,0 +1,56 @@
+Problem URL: https://leetcode.com/problems/majority-element/
+
+**Solution 1: Using Map in C++ Standard Template Library (STL)**
+
+//Code begins below (according to Leetcode template)
+
+#include <map>
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+    
+    int n = nums.size();
+    
+    map<int, int> freq;
+    
+    for(int i = 0; i < n; i++){
+        freq[nums[i]]++;
+        
+        if(freq[nums[i]] > n/2){
+            return nums[i];
+        }
+    }
+        
+    return 0;
+    }
+};
+
+**Solution 2: More optimized Solution based on Moore's voting algorithm**
+
+//Code begins below (according to Leetcode template)
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+     
+        int n = nums.size();
+        int cnt = 0;
+        int element = 0;
+        
+        for(int i = 0; i < n; i++){
+            if(cnt == 0){
+                element = nums[i];
+            }
+            
+            if(element == nums[i]){
+                cnt++;
+            }
+            else{
+                cnt--;
+            }
+        }
+       
+    return element;
+    }
+};
